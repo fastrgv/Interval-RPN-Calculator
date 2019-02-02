@@ -1,0 +1,56 @@
+V "GNAT Lib v2018"
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_STANDARD_STORAGE_POOLS
+RV SPARK_05
+
+U mathtypes%s		mathtypes.ads		6b4ac7a5 NE OO PK IL
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.aux%s	a-numaux.adb		a-numaux.ali
+W ada.numerics.generic_elementary_functions%s
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+Z system.exn_llf%s	s-exnllf.adb		s-exnllf.ali
+Z system.fat_lflt%s	s-fatlfl.ads		s-fatlfl.ali
+
+D ada.ads		20180525052300 76789da1 ada%s
+D a-except.ads		20180525052301 291912d5 ada.exceptions%s
+D a-numeri.ads		20180525052300 bb51c45a ada.numerics%s
+D a-numaux.ads		20180525052300 243fe0b7 ada.numerics.aux%s
+D a-ngelfu.ads		20180525052301 55716239 ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20180525052300 a9022048 ada.numerics.generic_elementary_functions%b
+D a-unccon.ads		20180525052301 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20180525052300 5ab55268 interfaces%s
+D i-c.ads		20180525052259 5421119b interfaces.c%s
+D mathtypes.ads		20190201214517 6a1ab407 mathtypes%s
+D system.ads		20180525052301 4635ec04 system%s
+D s-exctab.ads		20180525052301 54135002 system.exception_table%s
+D s-exnllf.ads		20180525052301 bc7ebbdc system.exn_llf%s
+D s-fatgen.ads		20180525052302 49cbaf86 system.fat_gen%s
+D s-fatlfl.ads		20180525052301 378cba9f system.fat_lflt%s
+D s-parame.ads		20180525052302 48ec542b system.parameters%s
+D s-stalib.ads		20180525052301 09bd3940 system.standard_library%s
+D s-traent.ads		20180525052300 005bf670 system.traceback_entries%s
+X 1 ada.ads
+16K9*Ada 20e8 10|3r6 12r17
+X 3 a-numeri.ads
+16K13*Numerics 32e17 10|3r10 12r21
+X 5 a-ngelfu.ads
+39k22*Generic_Elementary_Functions 205e46 10|3w19 12r30
+X 8 interfac.ads
+38K9*Interfaces 184e15 10|2r6 9r25
+X 9 i-c.ads
+18K20*C 230e17 10|2w17 9r36
+65F9*double<long_float> 10|9r38
+X 10 mathtypes.ads
+6K9*mathtypes 14l5 14e14
+9F17*real{9|65F9} 12r59
+11K17*math_lib[5|39]
+

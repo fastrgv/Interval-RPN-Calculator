@@ -1,0 +1,34 @@
+
+Interval RPN Calculator using GAOL
+<fastrgv@gmail.com>
+
+GAOL: Frederic Goualard <Frederic.Goualard@univ-nantes.fr>
+
+todo:  document for fred changes in *.h files...
+.) gaol_fpu_fenv.h::45
+	replace
+#if IX86_LINUX
+#   define CTRLWORD(v) (v).__control_word
+#elif IX86_MACOSX
+#   define CTRLWORD(v) (v).__control
+#endif 
+
+	with
+#if __APPLE__
+#   define CTRLWORD(v) (v).__control
+#elif IX86_LINUX
+#   define CTRLWORD(v) (v).__control_word
+#endif 
+
+
+
+1feb19:
+.) after edits of include files, got it 
+	working on OSX also.
+.) created & compiled adabinding;
+.) packaged libraries:
+	.) libultim (from IBM),
+	.) libgaol (from Goualard), 
+	.) libgdtoa;
+.) alpha version is working!
+

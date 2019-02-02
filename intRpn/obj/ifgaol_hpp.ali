@@ -1,0 +1,157 @@
+V "GNAT Lib v2018"
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U ifgaol_hpp%s		ifgaol_hpp.ads		08399221 NE OO PK IL
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+W interfaces.c.strings%s  i-cstrin.adb		i-cstrin.ali
+
+D ada.ads		20180525052300 76789da1 ada%s
+D a-unccon.ads		20180525052301 0e9b276f ada.unchecked_conversion%s
+D ifgaol_hpp.ads	20190201225506 68058e65 ifgaol_hpp%s
+D interfac.ads		20180525052300 5ab55268 interfaces%s
+D i-c.ads		20180525052259 5421119b interfaces.c%s
+D i-cstrin.ads		20180525052301 341d0ddf interfaces.c.strings%s
+D system.ads		20180525052301 4635ec04 system%s
+D s-exctab.ads		20180525052301 54135002 system.exception_table%s
+D s-parame.ads		20180525052302 48ec542b system.parameters%s
+D s-stalib.ads		20180525052301 09bd3940 system.standard_library%s
+X 3 ifgaol_hpp.ads
+7K9*ifGAOL_hpp 166l5 166e15
+9U14*plus 10>7 11>7 12>7 13>7 14^7 15^7 16b<cpp,_Z4plusddddRdS_>24
+10f7 xl{5|65F9}
+11f7 xr{5|65F9}
+12f7 yl{5|65F9}
+13f7 yr{5|65F9}
+14p7 zl(5|65F9)
+15p7 zr(5|65F9)
+18U14*minus 19>7 20>7 21>7 22>7 23^7 24^7 25b<cpp,_Z5minusddddRdS_>24
+19f7 xl{5|65F9}
+20f7 xr{5|65F9}
+21f7 yl{5|65F9}
+22f7 yr{5|65F9}
+23p7 zl(5|65F9)
+24p7 zr(5|65F9)
+27U14*times 28>7 29>7 30>7 31>7 32^7 33^7 34b<cpp,_Z5timesddddRdS_>24
+28f7 xl{5|65F9}
+29f7 xr{5|65F9}
+30f7 yl{5|65F9}
+31f7 yr{5|65F9}
+32p7 zl(5|65F9)
+33p7 zr(5|65F9)
+36U14*divide 37>7 38>7 39>7 40>7 41^7 42^7 43b<cpp,_Z6divideddddRdS_>24
+37f7 xl{5|65F9}
+38f7 xr{5|65F9}
+39f7 yl{5|65F9}
+40f7 yr{5|65F9}
+41p7 zl(5|65F9)
+42p7 zr(5|65F9)
+45U14*recip 46>7 47>7 48^7 49^7 50b<cpp,_Z5recipddRdS_>24
+46f7 xl{5|65F9}
+47f7 xr{5|65F9}
+48p7 zl(5|65F9)
+49p7 zr(5|65F9)
+52U14*sqrt 53>7 54>7 55^7 56^7 57b<cpp,_Z4sqrtddRdS_>24
+53f7 xl{5|65F9}
+54f7 xr{5|65F9}
+55p7 zl(5|65F9)
+56p7 zr(5|65F9)
+59U14*chs 60>7 61>7 62^7 63^7 64b<cpp,_Z3chsddRdS_>24
+60f7 xl{5|65F9}
+61f7 xr{5|65F9}
+62p7 zl(5|65F9)
+63p7 zr(5|65F9)
+66U14*exp 67>7 68>7 69^7 70^7 71b<cpp,_Z3expddRdS_>24
+67f7 xl{5|65F9}
+68f7 xr{5|65F9}
+69p7 zl(5|65F9)
+70p7 zr(5|65F9)
+73U14*ln 74>7 75>7 76^7 77^7 78b<cpp,_Z2lnddRdS_>24
+74f7 xl{5|65F9}
+75f7 xr{5|65F9}
+76p7 zl(5|65F9)
+77p7 zr(5|65F9)
+80U14*lg 81>7 82>7 83^7 84^7 85b<cpp,_Z2lgddRdS_>24
+81f7 xl{5|65F9}
+82f7 xr{5|65F9}
+83p7 zl(5|65F9)
+84p7 zr(5|65F9)
+87U14*sin 88>7 89>7 90^7 91^7 92b<cpp,_Z3sinddRdS_>24
+88f7 xl{5|65F9}
+89f7 xr{5|65F9}
+90p7 zl(5|65F9)
+91p7 zr(5|65F9)
+94U14*cos 95>7 96>7 97^7 98^7 99b<cpp,_Z3cosddRdS_>24
+95f7 xl{5|65F9}
+96f7 xr{5|65F9}
+97p7 zl(5|65F9)
+98p7 zr(5|65F9)
+101U14*tan 102>7 103>7 104^7 105^7 106b<cpp,_Z3tanddRdS_>24
+102f7 xl{5|65F9}
+103f7 xr{5|65F9}
+104p7 zl(5|65F9)
+105p7 zr(5|65F9)
+108U14*asin 109>7 110>7 111^7 112^7 113b<cpp,_Z4asinddRdS_>24
+109f7 xl{5|65F9}
+110f7 xr{5|65F9}
+111p7 zl(5|65F9)
+112p7 zr(5|65F9)
+115U14*acos 116>7 117>7 118^7 119^7 120b<cpp,_Z4acosddRdS_>24
+116f7 xl{5|65F9}
+117f7 xr{5|65F9}
+118p7 zl(5|65F9)
+119p7 zr(5|65F9)
+122U14*atan 123>7 124>7 125^7 126^7 127b<cpp,_Z4atanddRdS_>24
+123f7 xl{5|65F9}
+124f7 xr{5|65F9}
+125p7 zl(5|65F9)
+126p7 zr(5|65F9)
+129U14*pow 130>7 131>7 132>7 133>7 134^7 135^7 136b<cpp,_Z3powddddRdS_>24
+130f7 xl{5|65F9}
+131f7 xr{5|65F9}
+132f7 yl{5|65F9}
+133f7 yr{5|65F9}
+134p7 zl(5|65F9)
+135p7 zr(5|65F9)
+139U14*deg2rad 139^23 139^43 140b<cpp,_Z7deg2radRdS_>24
+139p23 zl(5|65F9)
+139p43 zr(5|65F9)
+142U14*rad2deg 142^23 142^43 143b<cpp,_Z7rad2degRdS_>24
+142p23 zl(5|65F9)
+142p43 zr(5|65F9)
+145U14*halfpi 145^22 145^42 146b<cpp,_Z6halfpiRdS_>24
+145p22 zl(5|65F9)
+145p42 zr(5|65F9)
+148U14*onepi 148^21 148^41 149b<cpp,_Z5onepiRdS_>24
+148p21 zl(5|65F9)
+148p41 zr(5|65F9)
+151U14*twopi 151^21 151^41 152b<cpp,_Z5twopiRdS_>24
+151p21 zl(5|65F9)
+151p41 zr(5|65F9)
+159U14*s2i 160>7 161^7 162^7 163b<cpp,_Z3s2iPKcRdS1_>24
+160p7 s{6|47P9}
+161p7 zl(5|65F9)
+162p7 zr(5|65F9)
+X 4 interfac.ads
+38K9*Interfaces 3|4r6 4r24 5r6 160r11 4|184e15
+X 5 i-c.ads
+18K20*C 3|4w17 4r35 5r17 160r22 5|230e17
+65F9*double<long_float> 3|10r12 11r12 12r12 13r12 14r19 15r19 19r12 20r12
+. 21r12 22r12 23r19 24r19 28r12 29r12 30r12 31r12 32r19 33r19 37r12 38r12
+. 39r12 40r12 41r19 42r19 46r12 47r12 48r19 49r19 53r12 54r12 55r19 56r19
+. 60r12 61r12 62r19 63r19 67r12 68r12 69r19 70r19 74r12 75r12 76r19 77r19
+. 81r12 82r12 83r19 84r19 88r12 89r12 90r19 91r19 95r12 96r12 97r19 98r19
+. 102r12 103r12 104r19 105r19 109r12 110r12 111r19 112r19 116r12 117r12 118r19
+. 119r19 123r12 124r12 125r19 126r19 130r12 131r12 132r12 133r12 134r19 135r19
+. 139r35 139r55 142r35 142r55 145r34 145r54 148r33 148r53 151r33 151r53 161r19
+. 162r19
+X 6 i-cstrin.ads
+36K22*Strings 3|5w19 160r24 6|106e25
+47P9*chars_ptr 3|160r32
+
