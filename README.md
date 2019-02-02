@@ -18,7 +18,7 @@ This terminal app runs on PCs or laptops running OSX or GNU/Linux.  It attempts 
 
 
 ### Operation
-Type numbers and hit <enter> to push each of them onto the RPN stack.  Then a single key defines the desired operation.
+Type numbers and hit (enter)-key to push each of them onto the RPN stack.  Then a single key defines the desired operation.
 
 RPN means that you enter the numbers first, then define the operation.  A unary operator, like sin, will apply the function to the number at the top of the numeric stack, then push the result back on the stack top.  A binary operator will pop two values off the stack, then perform the operation on them, and push the result back on the stack top.
 
