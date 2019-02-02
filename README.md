@@ -70,7 +70,7 @@ l
 
 
 
-## GAOL by Frédéric Goualard [GNU LGP] <Frederic.Goualard@univ-nantes.fr> 
+## GAOL by Frédéric Goualard [GNU LPGL] <Frederic.Goualard@univ-nantes.fr> 
 
 This app uses GAOL, a C++ library to perform arithmetic with floating-point intervals.
 
