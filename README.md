@@ -26,7 +26,7 @@ For those familiar with the HP RPN calculators, the number entry here differs.  
 
 The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
 
-#### Example output [ ln(1.3e-6) ]:
+#### Example screen output [ ln(1.3e-6) ]:
 
 1.3e-6
 
