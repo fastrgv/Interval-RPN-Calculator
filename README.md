@@ -27,15 +27,23 @@ For those familiar with the HP RPN calculators, the number entry here differs.  
 The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
 
 #### Example output [ ln(1.3e-6) ]:
+
 1.3e-6
 
  1.3000000000000000E-06HI
+ 
  1.2999999999999998E-06LO
+ 
  1.2999999999999998E-06AV     [ stack.top: 1 ]
+ 
 l
+
  LN 
+ 
 -13.5531462934967808HI
+
 -13.5531462934967840LO
+
 -13.5531462934967824AV     [ stack.top: 1 ]
 
 
