@@ -1,3 +1,10 @@
+
+Here is a 7z archives that includes all source and libraries:
+
+https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v1.0.0/irpn3feb19.7z
+
+
+
 # Interval RPN Calculator
 
 **ver 1.0.0 -- 3feb19**
