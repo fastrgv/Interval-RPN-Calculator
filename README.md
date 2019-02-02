@@ -17,6 +17,28 @@ This terminal app runs on PCs or laptops running OSX or GNU/Linux.  It attempts 
 
 
 
+Here is the header that appears on invocation:
+	
+---------------- Interval RPN calculator ---------------
+
+Key Map:
+
+            <esc>=>{quit}    <z>=>{clr}      <n>=>{CHS}
+            
+             <e>=>{EEX}      <E>=>{e^x}      <^>=>{x^y}
+             
+             <s>=>{sin}      <c>=>{cos}      <t>=>{tan}
+             
+             <S>=>{asin}     <C>=>{acos}     <T>=>{atan}
+             
+             <l>=>{ln}       <p>=>{pi}       <r>=>{sqrt}
+             
+             <L>=>{lg}       <D>=>{Deg}      <R>=>{Rad}
+             
+             <x>=>{X:Y}      <m>=>{STO}      <M>=>{RCL}
+
+
+
 ### Operation
 Type numbers and hit (enter)-key to push each of them onto the RPN stack.  Then a single key defines the desired operation.
 
