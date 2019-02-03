@@ -15,8 +15,6 @@ This terminal app runs on PCs or laptops running OSX or GNU/Linux.  It attempts 
 
 ## Details
 
-
-
 Here is the header that appears on invocation:
 	
 ---------------- Interval RPN calculator ---------------
@@ -38,9 +36,8 @@ Key Map:
              <x>=>{X:Y}      <m>=>{STO}      <M>=>{RCL}
 
 
-
 ### Operation
-Type numbers and hit (enter)-key to push each of them onto the RPN stack.  Then a single key defines the desired operation.
+Type numbers and hit <enter> to push each of them onto the RPN stack.  Then a single key defines the desired operation.
 
 RPN means that you enter the numbers first, then define the operation.  A unary operator, like sin, will apply the function to the number at the top of the numeric stack, then push the result back on the stack top.  A binary operator will pop two values off the stack, then perform the operation on them, and push the result back on the stack top.
 
@@ -48,29 +45,30 @@ For those familiar with the HP RPN calculators, the number entry here differs.  
 
 The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
 
-#### Example screen output [ ln(1.3e-6) ]:
+### Memory Function (mk/Mk, k=1..9):
 
+Enter a number, then type m3 + (enter), to store it in memory #3 location.  This will pop it off the stack.
+
+Recall it by typing M3 + (enter);  this puts it on top of stack, while retaining it in memory location #3.
+
+Enhancements to user-friendliness will be coming soon!
+
+
+#### Example output [ ln(1.3e-6) ]:
 1.3e-6
 
  1.3000000000000000E-06HI
- 
  1.2999999999999998E-06LO
- 
  1.2999999999999998E-06AV     [ stack.top: 1 ]
- 
 l
-
  LN 
- 
 -13.5531462934967808HI
-
 -13.5531462934967840LO
-
 -13.5531462934967824AV     [ stack.top: 1 ]
 
 
 
-## GAOL by Frédéric Goualard [GNU LPGL] <Frederic.Goualard@univ-nantes.fr> 
+## GAOL by Frédéric Goualard [GNU LGP] <Frederic.Goualard@univ-nantes.fr> 
 
 This app uses GAOL, a C++ library to perform arithmetic with floating-point intervals.
 
