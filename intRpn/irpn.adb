@@ -113,7 +113,7 @@ end update;
 procedure push( op: optype; inputStr: string := "" ) is
 	toosmall : constant real := 1.0e-1;
 	toolarge : constant real := 1.0e4;
-	avg: real;
+	avg,del: real;
 begin
 
 --put_line("push str=|"&inputStr&"|");
@@ -133,8 +133,8 @@ begin
 
 			if( op = data ) then
 
-				--temporary:
 				avg:=0.5*(num.lf+num.rt);
+				del:=0.5*(num.rt-num.lf); 
 
 				if(abs(avg)<toosmall)or(abs(avg)>toolarge) then
 					myreal_io.put(num.rt,2,16,3); put("HI");
@@ -144,6 +144,7 @@ begin
 					new_line;
 
 					myreal_io.put(avg,2,16,3); put("AV ");
+					put(" "); myreal_io.put(del,2,2,3); put(" Er");
 
 				else
 					myreal_io.put(num.rt,2,16,0); put("HI");
@@ -153,6 +154,7 @@ begin
 					new_line;
 
 					myreal_io.put(avg,2,16,0); put("AV ");
+					put(" "); myreal_io.put(del,2,2,3); put(" Er");
 
 				end if;
 
@@ -501,9 +503,6 @@ loop
 		when '+' =>
 
 			if len<=1 then
-				if numpending then
-				push( data ); -- enterkey is implicit here
-				end if;
 				push( plus );
 				applyOp;
 			end if;
@@ -511,101 +510,59 @@ loop
 		when '-' =>
 
 			if len<=1 then
-				if numpending then
-				push( data ); -- enterkey is implicit here
-				end if;
 				push( minus );
 				applyOp;
 			end if;
 
 		when '*' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( times );
 			applyOp;
 
 		when '/' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( divide );
 			applyOp;
 
 		when '^' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( power );
 			applyOp;
 
 		when 'r' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( sqrt );
 			applyOp;
 
 		when 's' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( sin );
 			applyOp;
 
 		when 'c' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( cos );
 			applyOp;
 
 		when 't' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( tan );
 			applyOp;
 
 		when 'S' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( asin );
 			applyOp;
 
 		when 'C' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( acos );
 			applyOp;
 
 		when 'T' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( atan );
 			applyOp;
 
 		when 'E' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( exp );
 			applyOp;
 
 		when 'l' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( ln );
 			applyOp;
 
 		when 'L' =>
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			push( log2 );
 			applyOp;
 
@@ -666,9 +623,6 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			put_line(" Clear All");
 
 		when 'm' =>  -- STO logic
-			if numpending then
-			push( data ); -- enterkey is implicit here
-			end if;
 			this:=this+1;
 			ch2:=inchars(this);
 			reset;
@@ -680,7 +634,8 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			put_line("    [ stack.top:"&integer'image(top)&" ]");
 			else
 			put(inchars(1));
-			raise program_error;
+			--raise program_error;
+			put_line(" STO fail");
 			end if;
 
 		when 'M' =>  -- RCL logic
@@ -691,7 +646,8 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			num:=mem(val); numpending:=true; push(data);
 			else
 			put(inchars(1));
-			raise program_error;
+			--raise program_error;
+			put_line(" RCL fail");
 			end if;
 
 
@@ -732,4 +688,5 @@ end loop inner;
 end loop outer;
 
 end irpn;
+
 
