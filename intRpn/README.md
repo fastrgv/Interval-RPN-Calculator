@@ -13,12 +13,19 @@ Here is the header that appears on invocation:
 ---------------- Interval RPN calculator ---------------
 
 Key Map:
+
             <esc>=>{quit}    <z>=>{clr}      <n>=>{CHS}
+            
              <e>=>{EEX}      <E>=>{e^x}      <^>=>{x^y}
+             
              <s>=>{sin}      <c>=>{cos}      <t>=>{tan}
+             
              <S>=>{asin}     <C>=>{acos}     <T>=>{atan}
+             
              <l>=>{ln}       <p>=>{pi}       <r>=>{sqrt}
-             <L>=>{lg}       <D>=>{Deg}      <R>=>{Rad}*
+             
+             <L>=>{lg}       <D>=>{Deg}      <R>=>{Rad}
+             
              <x>=>{X:Y}      <m>=>{STO}      <M>=>{RCL}
 
 
@@ -30,6 +37,15 @@ RPN means that you enter the numbers first, then define the operation.  A unary 
 For those familiar with the HP RPN calculators, the number entry here differs.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key.  The (n)-key will negate the value at the stack top.
 
 The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
+
+### Memory Function (mk/Mk, k=1..9):
+
+Enter a number, then type m3 + (enter), to store it in memory #3 location.  This will pop it off the stack.
+
+Recall it by typing M3 + (enter);  this puts it on top of stack, while retaining it in memory location #3.
+
+Enhancements to user-friendliness will be coming soon!
+
 
 #### Example output [ ln(1.3e-6) ]:
 1.3e-6
@@ -109,5 +125,6 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
  You may read the full text of the GNU General Public License
  at <http://www.gnu.org/licenses/>.
+
 
 
