@@ -7,7 +7,13 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v1.0.0/irpn
 
 # Interval RPN Calculator
 
+**ver 1.0.1 -- 5feb19**
+.) added some exception handling;
+.) added help (h), and show stack (k);
+.) output now grouped in 3s;
+
 **ver 1.0.0 -- 3feb19**
+initial release
 
 ## Brief Description
 This terminal app runs on PCs or laptops running OSX or GNU/Linux.  It attempts to mimic the functionality of an HP ReversePolishNotation [RPN] calculator with the added enhancement of interval output.  So along with your answer, you get a good idea of its trustworthiness.
@@ -57,14 +63,14 @@ Enhancements to user-friendliness will be coming soon!
 #### Example output [ ln(1.3e-6) ]:
 1.3e-6
 
- 1.3000000000000000E-06HI
- 1.2999999999999998E-06LO
- 1.2999999999999998E-06AV     [ stack.top: 1 ]
+1.300_000_000_000_000_000E-06 HI
+1.299_999_999_999_999_840E-06 LO
+1.299_999_999_999_999_840E-06 AV  1.06E-22 Er    [ stack.top: 1 ]
 l
  LN 
--13.5531462934967808HI
--13.5531462934967840LO
--13.5531462934967824AV     [ stack.top: 1 ]
+-13.553_146_293_496_780_800 HI
+-13.553_146_293_496_785_600 LO
+-13.553_146_293_496_782_400 AV  1.78E-15 Er    [ stack.top: 1 ]
 
 
 
@@ -72,7 +78,7 @@ l
 
 This app uses GAOL, a C++ library to perform arithmetic with floating-point intervals.
 
-It is hoped that this calculator will help to familiarize the curious with some of GAOL's incredible capabilities.  Of course, GAOL can be used in countless ways.  This app is a mere demonstration.
+It is hoped that this calculator will help to familiarize the curious with one of GAOL's incredible capabilities.  Of course, GAOL can be used in countless other possible ways since it is designed to handle general, arbitrarily-sized intervals.
 
 GAOL requires either IBM APMathlib, or CRlibm floating-point arithmetic libraries.
 
@@ -132,5 +138,6 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
  You may read the full text of the GNU General Public License
  at <http://www.gnu.org/licenses/>.
+
 
 
