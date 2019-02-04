@@ -5,6 +5,10 @@ with mathtypes;
 with interfaces.c;
 with interfaces.c.strings;
 
+with ada.strings;
+with ada.strings.fixed;
+with ada.strings.unbounded;
+
 with ada.characters.handling;  use ada.characters.handling;
 with ada.characters.latin_1;
 
@@ -49,9 +53,7 @@ procedure irpn is
 
 	--global numerical accumulators:
 	num : intervaltype;
-	expnum : real := 0.0;
-	frac : real := 1.0;
-	numpending, degmode : boolean := false;
+	degmode : boolean := false;
 
 
 	savtop, savnex : intervaltype;
@@ -68,6 +70,10 @@ procedure irpn is
 	uistring: string(linerange);
 
 	mem : array(0..9) of intervaltype;
+
+	-- dynamically-defined conversions
+	-- between radians, degrees:
+	d2r,r2d: intervaltype;
 
 
 
@@ -92,14 +98,6 @@ procedure irpn is
 
 
 
--- resets all numerical accumulators:
-procedure reset is
-begin
-	frac:=1.0;
-	num.lf:=0.0; num.rt:=0.0;  expnum:=0.0;
-	numpending:=false;
-end reset;
-
 -- assemble a number when ready:
 procedure update( inStr: string ) is
 	cstr: interfaces.c.strings.chars_ptr := 
@@ -109,68 +107,181 @@ begin
 end update;
 
 
+procedure showstack is
+	aval: real;
+begin
+	put("Stack: ");
+	new_line;
+	--for i in reverse 1..top loop
+	for i in 1..top loop
+		aval:=0.5*(stack(i-1).val.lf + stack(i-1).val.rt);
+		myreal_io.put( aval, 2,11,3 );
+		if i=top then
+			put_line("    [ stack.top:"&integer'image(top)&" ]");
+		else
+			new_line;
+		end if;
+	end loop;
+	--new_line;
+end showstack;
 
-procedure push( op: optype; inputStr: string := "" ) is
+
+procedure xshowline is -- assumes num, dnum, top defined
 	toosmall : constant real := 1.0e-1;
 	toolarge : constant real := 1.0e4;
 	avg,del: real;
 begin
 
+	avg:=0.5*(num.lf+num.rt);
+	del:=0.5*(num.rt-num.lf); 
+
+	if(abs(avg)<toosmall)or(abs(avg)>toolarge) then
+		myreal_io.put(num.rt,2,16,3); put(" HI");
+		new_line;
+
+		myreal_io.put(num.lf,2,16,3); put(" LO");
+		new_line;
+
+		myreal_io.put(avg,2,16,3); put(" AV ");
+		put(" "); myreal_io.put(del,2,2,3); put(" Er");
+
+	else
+		myreal_io.put(num.rt,2,16,0); put(" HI");
+		new_line;
+
+		myreal_io.put(num.lf,2,16,0); put(" LO");
+		new_line;
+
+		myreal_io.put(avg,2,16,0); put(" AV ");
+		put(" "); myreal_io.put(del,2,2,3); put(" Er");
+
+	end if;
+
+	put_line("    [ stack.top:"&integer'image(top)&" ]");
+
+end xshowline;
+
+
+--procedure showline( inputStr: string := "" ) is
+procedure showline is -- assumes num, dnum, top defined
+	toosmall : constant real := 1.0e-1;
+	toolarge : constant real := 1.0e4;
+	avg,del: real;
+
+	bgn,lst: natural;
+	nstrhi, nstrlo, nstrav : string(1..30);
+
+	procedure put3(nstr: in out string) is
+		f,l,d,x,a,b,len: natural;
+	begin
+
+		f:=nstr'first;
+		l:=nstr'last;
+		len:=nstr'length;
+		d:=ada.strings.fixed.index(nstr,".",f);
+		x:=ada.strings.fixed.index(nstr,"E",f);
+		a:=f;
+		b:=d+3;
+
+--put_line("DEBUG put3: f,l,len,d,x,a,b");
+--put(natural'image(f));--7
+--put(natural'image(l));--24
+--put(natural'image(len));--18
+--put(natural'image(d));--0
+--put(natural'image(x));--0
+--put(natural'image(a));--7
+--put(natural'image(b));--3
+--put(" ");
+--put_line(nstr); --3.14...
+--new_line;
+
+
+		put(nstr(a..b));
+		loop
+			a:=b+1;
+			b:=b+3; 
+			if b>l then b:=l; end if;
+			if x>f and b>=x then b:=x-1; end if;
+			put("_"); put(nstr(a..b));
+			exit when b>=l;
+			exit when x>1 and then b>=x-1;
+		end loop;
+		if x>f then
+			put(nstr(x..l));
+		end if;
+
+	end put3;
+
+begin
+
+	avg:=0.5*(num.lf+num.rt);
+	del:=0.5*(num.rt-num.lf); 
+
+	if(abs(avg)<toosmall)or(abs(avg)>toolarge) then
+		myreal_io.put(nstrhi,num.rt,18,3);
+		myreal_io.put(nstrlo,num.lf,18,3);
+		myreal_io.put(nstrav,avg,18,3);
+	else
+		myreal_io.put(nstrhi,num.rt,18,0);
+		myreal_io.put(nstrlo,num.lf,18,0);
+		myreal_io.put(nstrav,avg,18,0);
+	end if;
+
+	--normal output:
+	--put(nstrhi); put(" HI"); new_line;
+	--put(nstrlo); put(" LO"); new_line;
+	--put(nstrhi); put(" AV"); 
+
+	--alternate output in groups of 3:
+	bgn:=nstrhi'first;
+	lst:=nstrhi'last;
+	loop
+		exit when nstrhi(bgn)/=' ';
+		bgn:=bgn+1;
+	end loop;
+	put3(nstrhi(bgn..lst)); put(" HI"); new_line;
+	put3(nstrlo(bgn..lst)); put(" LO"); new_line;
+	put3(nstrav(bgn..lst)); put(" AV"); 
+
+
+	put(" "); myreal_io.put(del,2,2,3); put(" Er");
+	put_line("    [ stack.top:"&integer'image(top)&" ]");
+
+end showline;
+
+
+
+
+
+
+
+
+procedure push( op: optype; inputStr: string := "" ) is
+begin
+
 --put_line("push str=|"&inputStr&"|");
 --put_line("pushed: "&real'image(num.lf));
 
-	if( ((op=data) and numpending) or (op/=data) ) then
 
-		if( op = data ) and (inputStr/="") then
-			update(inputStr); -- sets num
-		end if;
+	if( op = data ) and (inputStr/="") then
+		update(inputStr); -- sets num
+	end if;
 
 
-		if( top < maxstack ) then
-			stack(top).op := op;
-			stack(top).val := num;
-			top := top+1; --points to next available space
+	if( top < maxstack ) then
+		stack(top).op := op;
+		stack(top).val := num;
+		top := top+1; --points to next available space
 
-			if( op = data ) then
-
-				avg:=0.5*(num.lf+num.rt);
-				del:=0.5*(num.rt-num.lf); 
-
-				if(abs(avg)<toosmall)or(abs(avg)>toolarge) then
-					myreal_io.put(num.rt,2,16,3); put("HI");
-					new_line;
-
-					myreal_io.put(num.lf,2,16,3); put("LO");
-					new_line;
-
-					myreal_io.put(avg,2,16,3); put("AV ");
-					put(" "); myreal_io.put(del,2,2,3); put(" Er");
-
-				else
-					myreal_io.put(num.rt,2,16,0); put("HI");
-					new_line;
-
-					myreal_io.put(num.lf,2,16,0); put("LO");
-					new_line;
-
-					myreal_io.put(avg,2,16,0); put("AV ");
-					put(" "); myreal_io.put(del,2,2,3); put(" Er");
-
-				end if;
-
-				put_line("    [ stack.top:"&integer'image(top)&" ]");
-
-			else
-				put(" "&optype'image(op)&" ");
-				new_line;
-			end if;
-
-			--reset accumulators, numpending:=false
-			reset;
-
+		if( op = data ) then
+			showline;
+		else
+			put(" "&optype'image(op)&" ");
+			new_line;
 		end if;
 
 	end if;
+
 
 end push;
 
@@ -218,20 +329,15 @@ end pop;
 
 
 procedure applyOp is
-left, right : intervaltype;
-op : optype;
---nint, ninv : integer;
---integral, oddinv, intinv, odd : boolean;
-
-d2r,r2d, ln2 : intervaltype;
+	junk, left, right : intervaltype;
+	op : optype;
+	
+	ln2 : intervaltype;
 
 	two: interfaces.c.strings.chars_ptr := 
 		interfaces.c.strings.new_string("2.0");
 
 begin
-
-ifgaol_hpp.deg2rad(d2r.lf'access,d2r.rt'access);
-ifgaol_hpp.rad2deg(r2d.lf'access,r2d.rt'access);
 
 op := pop;
 pop(right);
@@ -240,85 +346,88 @@ case op is
 
 when plus =>
 	pop(left);
-	ifgaol_hpp.plus(left.lf,left.rt,right.lf,right.rt, num.lf'access,num.rt'access);
+	ifgaol_hpp.plus(left.lf,left.rt,right.lf,right.rt, 
+		num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when minus =>
 	pop(left);
-	ifgaol_hpp.minus(left.lf,left.rt,right.lf,right.rt, num.lf'access,num.rt'access);
+	ifgaol_hpp.minus(left.lf,left.rt,right.lf,right.rt, 
+		num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when times =>
 	pop(left);
-	ifgaol_hpp.times(left.lf,left.rt,right.lf,right.rt, num.lf'access,num.rt'access);
+	ifgaol_hpp.times(left.lf,left.rt,right.lf,right.rt, 
+		num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when divide =>
 	pop(left);
-	ifgaol_hpp.divide(left.lf,left.rt,right.lf,right.rt, num.lf'access,num.rt'access);
+	ifgaol_hpp.divide(left.lf,left.rt,right.lf,right.rt, 
+		num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when power =>
 
 	pop(left);
-	ifgaol_hpp.pow(left.lf,left.rt,right.lf,right.rt, num.lf'access,num.rt'access);
+	ifgaol_hpp.pow(left.lf,left.rt,right.lf,right.rt, 
+		num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
-	--all the rest only require 1 argument
+
+
+--all the rest only require 1 argument
 
 
 when recip =>
+
 	ifgaol_hpp.recip(right.lf, right.rt, num.lf'access, num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when sqrt =>
 
 	ifgaol_hpp.sqrt(right.lf,right.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
+
 when sin =>
+
 	if degmode then --convert right to radians
-		ifgaol_hpp.times(d2r.lf,d2r.rt, right.lf,right.rt, left.lf'access,left.rt'access);
+		ifgaol_hpp.times(d2r.lf,d2r.rt, right.lf,right.rt, 
+			left.lf'access,left.rt'access);
 		right:=left;
 	end if;
 	ifgaol_hpp.sin(right.lf,right.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when cos =>
 
 	if degmode then --convert right to radians
-		ifgaol_hpp.times(d2r.lf,d2r.rt, right.lf,right.rt, left.lf'access,left.rt'access);
+		ifgaol_hpp.times(d2r.lf,d2r.rt, right.lf,right.rt, 
+			left.lf'access,left.rt'access);
 		right:=left;
 	end if;
 	ifgaol_hpp.cos(right.lf,right.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when tan =>
 
 	if degmode then --convert right to radians
-		ifgaol_hpp.times(d2r.lf,d2r.rt, right.lf,right.rt, left.lf'access,left.rt'access);
+		ifgaol_hpp.times(d2r.lf,d2r.rt, right.lf,right.rt, 
+			left.lf'access,left.rt'access);
 		right:=left;
 	end if;
 	ifgaol_hpp.tan(right.lf,right.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when asin =>
@@ -329,7 +438,6 @@ when asin =>
 		ifgaol_hpp.times(r2d.lf,r2d.rt, right.lf,right.rt, num.lf'access,num.rt'access);
 	end if;
 
-	numpending:=true;
 	push( data );
 
 when acos =>
@@ -340,7 +448,6 @@ when acos =>
 		ifgaol_hpp.times(r2d.lf,r2d.rt, right.lf,right.rt, num.lf'access,num.rt'access);
 	end if;
 
-	numpending:=true;
 	push( data );
 
 when atan =>
@@ -351,20 +458,17 @@ when atan =>
 		ifgaol_hpp.times(r2d.lf,r2d.rt, right.lf,right.rt, num.lf'access,num.rt'access);
 	end if;
 
-	numpending:=true;
 	push( data );
 
 when exp =>
 
 	ifgaol_hpp.exp(right.lf,right.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when ln =>
 	ifgaol_hpp.ln(right.lf,right.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when log2 =>
@@ -375,7 +479,6 @@ when log2 =>
 	left:=num;
 	ifgaol_hpp.divide(left.lf,left.rt, ln2.lf, ln2.rt, num.lf'access,num.rt'access);
 
-	numpending:=true;
 	push( data );
 
 when others =>
@@ -384,6 +487,22 @@ when others =>
 	put_line("aborting");
 	raise program_error;
 end case;
+
+
+exception
+
+	when constraint_error => -- try to continue
+		pop(junk); --delete junk
+		case op is --restore stack
+			when plus | minus | times | divide | power =>
+				num:=left;  push(data);
+				num:=right; push(data);
+			when others=>
+				num:=right;  push(data);
+		end case;
+		put_line("argument_error...try again");
+		showstack;
+
 
 end applyOp;
 
@@ -411,6 +530,7 @@ begin
 			inpchars(len):=ch;
 			if(ord/=13)and(ord/=10)and(ord/=27) then
 				put( ch );
+				if ch='n' then new_line; end if;
 			end if;
 
 			stop := (ch in 'A'..'Z')or(ch in 'a'..'z')
@@ -463,7 +583,7 @@ put_line("---------------- Interval RPN calculator ---------------");
 new_line;
 put_line("Key Map:");
 put_line("            <esc>=>{quit}    <z>=>{clr}      <n>=>{CHS}");
-put_line("             <e>=>{EEX}      <E>=>{e^x}      <^>=>{x^y}");
+put_line("             <k>=>{stack}    <E>=>{e^x}      <^>=>{x^y}");
 put_line("             <s>=>{sin}      <c>=>{cos}      <t>=>{tan}");
 put_line("             <S>=>{asin}     <C>=>{acos}     <T>=>{atan}");
 put_line("             <l>=>{ln}       <p>=>{pi}       <r>=>{sqrt}");
@@ -475,6 +595,11 @@ end menu;
 
 
 begin --irpn(main)----------------------------------------------
+
+
+ifgaol_hpp.deg2rad(d2r.lf'access,d2r.rt'access);
+ifgaol_hpp.rad2deg(r2d.lf'access,r2d.rt'access);
+
 
 menu;
 
@@ -569,31 +694,25 @@ loop
 
 
 		when 'p' => --pi
-			reset;
 
 			ifgaol_hpp.onepi(num.lf'access,num.rt'access);
-			numpending:=true;
 			push( data );
 
 
 		when 'n' => -- change sign (Negate) NOW ONLY APPLIES TO STACKTOP
 
-myassert(not numpending, 5, "logic @ 585 when n");
-			if not numpending then
 				pop(num); --added 31jan19
-				numpending:=true; --negate stackTop
-			end if;
 
 			ifgaol_hpp.chs(num.lf,num.rt, num.lf'access, num.rt'access);
-			--WARNING:  this might not work
+			--WARNING:  this might not work because outvar=invar
 
 			push( data );
 
 		when '0'..'9' =>
-			numpending:=true;
+			null;
 
 		when '.' | 'e' => --added 1feb19
-			numpending:=true;
+			null;
 
 		when 'q'|'Q' =>  -- quit
 			exit outer; --loop (quit gracefully)
@@ -612,20 +731,18 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			pop( savnex );
 
 			num.lf:=savtop.lf;  num.rt:=savtop.rt;
-				numpending:=true; push(data);
+				push(data);
 
 			num.lf:=savnex.lf;  num.rt:=savnex.rt;
-				numpending:=true; push(data);
+				push(data);
 
 		when 'z' => -- clear
-			reset;
 			top:=0;
 			put_line(" Clear All");
 
 		when 'm' =>  -- STO logic
 			this:=this+1;
 			ch2:=inchars(this);
-			reset;
 			if( is_digit(ch2) and (top>0) ) then
 			val:=character'pos(ch2) - character'pos('0');
 			pop( savtop );
@@ -634,7 +751,6 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			put_line("    [ stack.top:"&integer'image(top)&" ]");
 			else
 			put(inchars(1));
-			--raise program_error;
 			put_line(" STO fail");
 			end if;
 
@@ -643,13 +759,19 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			ch2:=inchars(this);
 			if( is_digit(ch2) ) then
 			val:=character'pos(ch2) - character'pos('0');
-			num:=mem(val); numpending:=true; push(data);
+			num:=mem(val);  push(data);
 			else
 			put(inchars(1));
-			--raise program_error;
 			put_line(" RCL fail");
 			end if;
 
+
+		when 'h' => 
+			menu;
+			showline;
+
+		when 'k' =>
+			showstack;
 
 		when others =>
 
@@ -658,9 +780,7 @@ myassert(not numpending, 5, "logic @ 585 when n");
 			( character'pos(ch) = 10 ) -- unix/linux <enter>
 			then -- <enter>
 
-				if numpending then
 				push( data, uistring(1..len) );
-				end if;
 
 
 			elsif( character'pos(ch) = 27 ) then --<esc> => exit
@@ -671,9 +791,6 @@ myassert(not numpending, 5, "logic @ 585 when n");
 				put("  Msg: unhandled character: |"); put(ch); put_line("|");
 				put_line( "char'pos="&integer'image( character'pos(ch) ) );
 				put_line(" Showing Menu:");
-				--get_line(instr,last);
-				--put_line("aborting");
-				--raise program_error;
 				menu;
 
 			end if;
@@ -688,5 +805,4 @@ end loop inner;
 end loop outer;
 
 end irpn;
-
 
