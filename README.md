@@ -117,7 +117,7 @@ This app should run as delivered, but the tools to rebuild are included, also.
 There are also interface libraries that should not need rebuilding, but if you try...
 Note that the directory ~/intRpn/adabinding/ contains scripts to rebuild the interface libraries:
 	libifgaol.so (linux), libifgaol.dylib (osx)
-however, the dylib needs to be subsequently modified with the script "fixlib.sh", it you attempt to rebuild these libraries yourself.
+however, the resulting dylib needs to be subsequently modified with the script "fixlib.sh", it you attempt to rebuild these libraries yourself.
 
 Finally, if my prebuilt GAOL libraries for linux do not work on your flavor of linux, you would need to build GAOL for yourself (and modify the compiler scripts).  Here is the website:  
 
