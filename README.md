@@ -111,6 +111,7 @@ The install_directory should contain a subdirectory named "libs".  This app is c
 This app should run as delivered, but the tools to rebuild are included, also.
 
 **MacOSX** => ocmp.sh
+
 **GNU/Linux** => lcmp.sh
 
 There are also interface libraries that should not need rebuilding, but if you try...
