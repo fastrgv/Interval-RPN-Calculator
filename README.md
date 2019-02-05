@@ -102,7 +102,7 @@ Linux users should type "irpn_gnu".
 
 Mac users type "irpn_osx".
 
-The install_directory should contain a subdirectory named "libs".  The expectation is that this app is completely self contained and should run without installing third party libraries on your system.
+The install_directory should contain a subdirectory named "libs".  This app is completely self contained and should run without installing third party libraries on your system.
 
 --------------------------------------------------------------------------
 
