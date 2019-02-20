@@ -1,5 +1,5 @@
 
-Here is a 7z archives that includes all source and libraries:
+Here is a 7z archive that includes all source and libraries:
 
 https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v1.0.0/irpn5feb19.7z
 
