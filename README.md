@@ -7,6 +7,12 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v1.0.0/irpn
 
 # Interval RPN Calculator
 
+
+**ver 1.0.2 -- 27feb19**
+.) updated to newer mathlib (linux);
+.) improved & simplified output formats;
+
+
 **ver 1.0.1 -- 5feb19**
 .) added some exception handling;
 .) added help (h), and show stack (k);
