@@ -140,9 +140,9 @@ begin
 		new_line;
 
 		myreal_io.put(num.lf,2,16,3); put(" LO");
-		new_line;
+		--new_line;
 
-		myreal_io.put(avg,2,16,3); put(" AV ");
+		--myreal_io.put(avg,2,16,3); put(" AV ");
 		put(" "); myreal_io.put(del,2,2,3); put(" Er");
 
 	else
@@ -150,9 +150,9 @@ begin
 		new_line;
 
 		myreal_io.put(num.lf,2,16,0); put(" LO");
-		new_line;
+		--new_line;
 
-		myreal_io.put(avg,2,16,0); put(" AV ");
+		--myreal_io.put(avg,2,16,0); put(" AV ");
 		put(" "); myreal_io.put(del,2,2,3); put(" Er");
 
 	end if;
@@ -166,10 +166,11 @@ end xshowline;
 procedure showline is -- assumes num, dnum, top defined
 	toosmall : constant real := 1.0e-1;
 	toolarge : constant real := 1.0e4;
-	avg,del: real;
+	--avg,del: real;
 
 	bgn,lst: natural;
-	nstrhi, nstrlo, nstrav : string(1..30);
+	--nstrav,
+	nstrhi, nstrlo : string(1..30);
 
 	procedure put3(nstr: in out string) is
 		f,l,d,x,a,b,len: natural;
@@ -214,17 +215,18 @@ procedure showline is -- assumes num, dnum, top defined
 
 begin
 
-	avg:=0.5*(num.lf+num.rt);
-	del:=0.5*(num.rt-num.lf); 
+	--avg:=0.5*(num.lf+num.rt);
+	--del:=0.5*(num.rt-num.lf); 
+	--del:=(num.rt-num.lf); 
 
-	if(abs(avg)<toosmall)or(abs(avg)>toolarge) then
+	if(abs(num.rt)<toosmall)or(abs(num.rt)>toolarge) then
 		myreal_io.put(nstrhi,num.rt,18,3);
 		myreal_io.put(nstrlo,num.lf,18,3);
-		myreal_io.put(nstrav,avg,18,3);
+		--myreal_io.put(nstrav,avg,18,3);
 	else
 		myreal_io.put(nstrhi,num.rt,18,0);
 		myreal_io.put(nstrlo,num.lf,18,0);
-		myreal_io.put(nstrav,avg,18,0);
+		--myreal_io.put(nstrav,avg,18,0);
 	end if;
 
 	--normal output:
@@ -240,11 +242,11 @@ begin
 		bgn:=bgn+1;
 	end loop;
 	put3(nstrhi(bgn..lst)); put(" HI"); new_line;
-	put3(nstrlo(bgn..lst)); put(" LO"); new_line;
-	put3(nstrav(bgn..lst)); put(" AV"); 
+	put3(nstrlo(bgn..lst)); put(" LO"); --new_line;
+	--put3(nstrav(bgn..lst)); put(" AV"); 
 
 
-	put(" "); myreal_io.put(del,2,2,3); put(" Er");
+	--put(" "); myreal_io.put(del,2,2,3); put(" Er");
 	put_line("    [ stack.top:"&integer'image(top)&" ]");
 
 end showline;
