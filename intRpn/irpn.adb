@@ -170,7 +170,7 @@ procedure showline is -- assumes num, dnum, top defined
 
 	bgn,lst: natural;
 	--nstrav,
-	nstrhi, nstrlo : string(1..30);
+	nstrhi, nstrlo : string(1..50);
 
 	procedure put3(nstr: in out string) is
 		f,l,d,x,a,b,len: natural;
@@ -235,12 +235,8 @@ begin
 	--put(nstrhi); put(" AV"); 
 
 	--alternate output in groups of 3:
-	bgn:=nstrhi'first;
 	lst:=nstrhi'last;
-	loop
-		exit when nstrhi(bgn)/=' ';
-		bgn:=bgn+1;
-	end loop;
+	bgn:=ada.strings.fixed.index_non_blank(nstrhi);
 	put3(nstrhi(bgn..lst)); put(" HI"); new_line;
 	put3(nstrlo(bgn..lst)); put(" LO"); --new_line;
 	--put3(nstrav(bgn..lst)); put(" AV"); 
@@ -782,7 +778,9 @@ loop
 			( character'pos(ch) = 10 ) -- unix/linux <enter>
 			then -- <enter>
 
-				push( data, uistring(1..len) );
+				if len>1 then
+					push( data, uistring(1..len) );
+				end if;
 
 
 			elsif( character'pos(ch) = 27 ) then --<esc> => exit
