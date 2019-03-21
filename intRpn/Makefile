@@ -1,4 +1,5 @@
-CC=gnatmake
+cpath=$(HOME)/opt/GNAT/2018/bin
+CC=$(cpath)/gnatmake
 
 irpn_osx: ifgaol_hpp.ads irpn.adb mathtypes.ads
 	mkdir -p obj
