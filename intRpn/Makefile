@@ -12,5 +12,4 @@ irpn_gnu: ifgaol_hpp.ads irpn.adb mathtypes.ads
 
 .PHONY : clean
 
-clean: 
-	-rm -Rf irpn_osx irpn_gnu obj 
+clean:  -rm -Rf irpn_osx irpn_gnu obj 
