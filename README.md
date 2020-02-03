@@ -7,6 +7,10 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v1.0.2/irpn
 
 # Interval RPN Calculator
 
+**ver 1.1.0 -- 3feb20**
+
+* Big improvement in linux portability.  Now runs on a redhat-derived linux distro, as well as Mint, a Debian-derivative.
+
 
 **ver 1.0.2 -- 27feb19**
 .) updated to newer mathlib (linux);
