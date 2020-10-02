@@ -130,7 +130,7 @@ Finally, if my prebuilt GAOL libraries for linux do not work on your flavor of l
 
 http://frederic.goualard.net/
 
-I am fairly confident that my prebuilt GAOL library for OSX will work.  If I'm wrong, reference the above website.
+I am fairly confident that my prebuilt GAOL library for OSX will work.  If I'm wrong, refer to the above website.
 
 
 ## Solicitation:
