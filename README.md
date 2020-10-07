@@ -7,26 +7,14 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v1.1.0/irpn
 
 # Interval RPN Calculator
 
-**ver 1.1.0 -- 3feb20**
 
-* Big improvement in linux portability.  Now runs on a redhat-derived linux distro, as well as Mint, a Debian-derivative.
+**ver 2.0.0 -- 7oct20**
+* Converted to using Boost-Interval library. (Boost NOT needed to run).
+* Now works for Windows, OSX, & most distros of linux.
 
-
-**ver 1.0.2 -- 27feb19**
-.) updated to newer mathlib (linux);
-.) improved & simplified output formats;
-
-
-**ver 1.0.1 -- 5feb19**
-.) added some exception handling;
-.) added help (h), and show stack (k);
-.) output now grouped in 3s;
-
-**ver 1.0.0 -- 3feb19**
-initial release
 
 ## Brief Description
-This terminal app runs on PCs or laptops running OSX or GNU/Linux.  It attempts to mimic the functionality of an HP ReversePolishNotation [RPN] calculator with the added enhancement of interval output.  So along with your answer, you get a good idea of its trustworthiness.
+This terminal app runs on PCs or laptops running Windows, OSX or GNU/Linux.  It attempts to mimic the functionality of an HP ReversePolishNotation [RPN] calculator with the added enhancement of interval output.  So along with your answer, you get a good idea of its trustworthiness.
 
 
 ## Details
@@ -57,7 +45,7 @@ Type numbers and hit (enter) to push each of them onto the RPN stack.  Then a si
 
 RPN means that you enter the numbers first, then define the operation.  A unary operator, like sin, will apply the function to the number at the top of the numeric stack, then push the result back on the stack top.  A binary operator will pop two values off the stack, then perform the operation on them, and push the result back on the stack top.
 
-For those familiar with the HP RPN calculators, the number entry here differs.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key.  The (n)-key will negate the value at the stack top.  (ie: typing "-1.3e-6" is not allowed)
+For those familiar with the HP RPN calculators, the number entry here differs slightly.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key.  The (n)-key will negate the value at the stack top. (i.e.: typing "-1.3e-6" is not allowed)
 
 The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
 
@@ -71,6 +59,7 @@ Enhancements to user-friendliness will be coming soon!
 
 
 #### Example output [ ln(1.3e-6) ]:
+
 1.3e-6
 
 1.300_000_000_000_000_000E-06 HI
@@ -88,58 +77,50 @@ l
 
 
 
-## GAOL by Frédéric Goualard [GNU LGP] <Frederic.Goualard@univ-nantes.fr> 
 
-This app uses GAOL, a C++ library to perform arithmetic with floating-point intervals.
+## Mini Thin Binding to Boost Intervals
 
-It is hoped that this calculator will help to familiarize the curious with one of GAOL's incredible capabilities.  Of course, GAOL can be used in countless other possible ways since it is designed to handle general, arbitrarily-sized intervals.
-
-GAOL requires either IBM APMathlib, or CRlibm floating-point arithmetic libraries.
-
-
+Ada developers note that this app includes a minimal Ada-binding to the Boost Interval C++ library.  But, more importantly, it demonstrates the methodology so you can expand the binding to include access to other functionality, as needed.
 
 ## Setup & Running:
-The application's root directory [~/intRpn/] contains files for deployment on 2 platforms:  1)OS-X, 2)linux, in addition to all the source code.
+The application's root directory [~/intRpn/] contains files for deployment on 3 platforms:  1)OS-X, 2)linux, 3)Windows, in addition to all the source code.
 
 Unzip the archive.
 
 Open a commandline terminal, and cd to the install directory.
 
-Linux users should type "irpn_gnu".
+Linux users should type "irpn_gnu". (runs on most linux distros.)
 
 Mac users type "irpn_osx".
 
-The install_directory should contain a subdirectory named "libs".  This app is completely self contained and should run without installing third party libraries on your system.
+Windows users type "irpn.exe".
+
+The install_directory should contain a subdirectory named "libs".  This app is completely self contained and will run without installing third party software onto your system.
 
 --------------------------------------------------------------------------
 
 ## Rebuild Instructions
 
-This app should run as delivered, but the tools to rebuild are included, also.
+This app should run as delivered, but the tools to rebuild are included.
+
+**Windows** => wcmp.bat
 
 **MacOSX** => ocmp.sh
 
 **GNU/Linux** => lcmp.sh
 
-There are also interface libraries that should not need rebuilding, but if you try...
-Note that the directory ~/intRpn/adabinding/ contains scripts to rebuild the interface libraries:
-	libifgaol.so (linux), libifgaol.dylib (osx)
-however, the resulting dylib needs to be subsequently modified with the script "fixlib.sh", it you attempt to rebuild these libraries yourself.
+Thusly, modifying the main app, irpn.adb, and rebuilding, only requires an Ada compiler.
 
-Finally, if my prebuilt GAOL libraries for linux do not work on your flavor of linux, you would need to build GAOL for yourself (and modify the compiler scripts).  Here is the website:  
+There are also interface libraries that should not need rebuilding, but if you do, you must first install Boost.
+The directory ~/intRpn/adabinding/ contains scripts to rebuild the interface libraries:
+	libifgaol.a (win32), libifgaol.so (linux), libifgaol.dylib (osx).
+On OSX, the resulting dylib needs to be subsequently modified with the script "fixlib.sh", to make it findable.
 
-http://frederic.goualard.net/
-
-I am fairly confident that my prebuilt GAOL library for OSX will work.  If I'm wrong, refer to the above website.
-
-
-## Solicitation:
-Help me to get this working on M.S. Windows too!
 
 =======================================================================
 IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
- Copyright (C) 2019  fastrgv@gmail.com
+ Copyright (C) 2020  fastrgv@gmail.com
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -155,4 +136,21 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
  at <http://www.gnu.org/licenses/>.
 
 
+## Older Change History------------------------------------------------
+=======================================================================
+
+**ver 1.1.0 -- 3feb20**
+* Big improvement in linux portability.  Now runs on a redhat-derived linux distro, as well as Mint, a Debian-derivative.
+
+**ver 1.0.2 -- 27feb19**
+.) updated to newer mathlib (linux);
+.) improved & simplified output formats;
+
+**ver 1.0.1 -- 5feb19**
+.) added some exception handling;
+.) added help (h), and show stack (k);
+.) output now grouped in 3s;
+
+**ver 1.0.0 -- 3feb19**
+.) initial release
 
