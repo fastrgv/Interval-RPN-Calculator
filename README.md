@@ -1,5 +1,5 @@
-ATTENTION: the intRpn directory above contains an old version! Do NOT use!
-----------------------------------------------------------------------------------------------------------
+ATTENTION: the intRpn directory above contains an old version!
+--------------------------------------------------------------
 
 
 
