@@ -1,8 +1,3 @@
-ATTENTION: the intRpn directory above contains an old version!
---------------------------------------------------------------
-
-
-
 
 
 
