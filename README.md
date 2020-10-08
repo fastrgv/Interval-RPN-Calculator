@@ -6,7 +6,7 @@ ATTENTION: the intRpn directory above contains an old version!
 
 
 
-Here is a 7z archive that includes all source and libraries:
+Here is a 7z archive that includes all the newest source and libraries:
 
 https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.0/irpn7oct20.7z
 
