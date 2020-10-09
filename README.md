@@ -9,6 +9,10 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.0/irpn
 
 # Interval RPN Calculator
 
+**ver 2.0.1 -- 9oct20**
+* Improved coding of ifGAOL.cpp for better accuracy.
+* Improved number entry in irpn.adb for proper accuracy.
+
 
 **ver 2.0.0 -- 7oct20**
 * Converted to using Boost-Interval library. (Boost NOT needed to run).
