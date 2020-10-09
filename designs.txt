@@ -1,6 +1,7 @@
 My Design Goals (for Potential Contributors):
 
-I dislike both Microsoft and Apple because of the freedoms and privacy they deny me, and I fully support the F.S.F.  
+I dislike both Microsoft and Apple because of the freedoms and privacy they deny me, 
+and I fully support the F.S.F.  
 Thusly, I choose to minimize my involvment with their esoteric OS's.  
 Still, I want to reach their large audiences with my programs.
 
