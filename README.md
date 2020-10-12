@@ -9,6 +9,12 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.1/irpn
 
 # Interval RPN Calculator
 
+**ver 2.0.2 -- 12oct20**
+
+* Improved output format; added (h)-key.
+* Improved handling of erroneous inputs.
+
+
 **ver 2.0.1 -- 9oct20**
 * Improved coding of ifGAOL.cpp for better accuracy.
 * Improved number entry in irpn.adb for proper accuracy.
