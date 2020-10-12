@@ -9,6 +9,7 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.2/irpn
 
 # Interval RPN Calculator
 
+
 **ver 2.0.2 -- 12oct20**
 
 * Improved output format; added (h)-key.
@@ -16,12 +17,15 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.2/irpn
 
 
 **ver 2.0.1 -- 9oct20**
+
 * Improved coding of ifGAOL.cpp for better accuracy.
+
 * Improved number entry in irpn.adb for proper accuracy.
 
-
 **ver 2.0.0 -- 7oct20**
+
 * Converted to using Boost-Interval library. (Boost NOT needed to run).
+
 * Now works for Windows, OSX, & most distros of linux.
 
 
@@ -57,9 +61,17 @@ Type numbers and hit (enter) to push each of them onto the RPN stack.  Then a si
 
 RPN means that you enter the numbers first, then define the operation.  A unary operator, like sin, will apply the function to the number at the top of the numeric stack, then push the result back on the stack top.  A binary operator will pop two values off the stack, then perform the operation on them, and push the result back on the stack top.
 
-For those familiar with the HP RPN calculators, the number entry here differs slightly.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key.  The (n)-key will negate the value at the stack top. (i.e.: typing "-1.3e-6" is not allowed)
+For those familiar with the HP RPN calculators, the number entry here differs slightly.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key.  
+
+In order that math OPs only require a single keystroke
+**a unary minus is not allowed**
+The (n)-key will negate the value at the stack top. 
+(i.e.: typing "-1.3e-6" is not allowed)
 
 The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
+
+The (h)-key [Help] will always show the menu.
+
 
 ### Memory Function (mk/Mk, k=1..9):
 
@@ -95,7 +107,7 @@ l
 Ada developers note that this app includes a minimal Ada-binding to the Boost Interval C++ library.  But, more importantly, it demonstrates the methodology so you can expand the binding to include access to other functionality, as needed.
 
 ## Setup & Running:
-The application's root directory [~/intRpn/] contains files for deployment on 3 platforms:  1)OS-X, 2)linux, 3)Windows, in addition to all the source code.
+The application's root directory [~/intRpn/] contains files for deployment on 3 platforms:  1)OS-X, 2)linux, 3)Windows, in addition to all the source code. This app is completely self contained and will run without installing any third party software onto your system.
 
 Unzip the archive.
 
@@ -107,7 +119,12 @@ Mac users type "irpn_osx".
 
 Windows users type "irpn.exe".
 
-The install_directory should contain a subdirectory named "libs".  This app is completely self contained and will run without installing third party software onto your system.
+-------------------------------------------------------------------
+The h-key (Help/Hint) will show the menu.
+In order that math OPs only require a single keystroke
+**a unary minus is not allowed**
+Use the n-key to CHS (negate the stack top).
+
 
 --------------------------------------------------------------------------
 
@@ -165,4 +182,5 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
 **ver 1.0.0 -- 3feb19**
 .) initial release
+
 
