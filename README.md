@@ -109,7 +109,8 @@ Ada developers note that this app includes a minimal Ada-binding to the Boost In
 ## Setup & Running:
 The application's root directory [~/intRpn/] contains files for deployment on 3 platforms:  1)OS-X, 2)linux, 3)Windows, in addition to all the source code. This app is completely self contained and will run without installing any third party software onto your system.
 
-Unzip the archive.
+Unzip the archive. The proper command to extract the archive and maintain the directory structure is "7z x filename".
+
 
 Open a commandline terminal, and cd to the install directory.
 
