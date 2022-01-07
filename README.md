@@ -9,6 +9,10 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.2/irpn
 
 # Interval RPN Calculator
 
+**ver 2.0.3 -- 8jan22**
+* Improved coding, interface & help screen.
+* Reduced clutter in root directory.
+
 
 **ver 2.0.2 -- 12oct20**
 
