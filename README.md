@@ -1,4 +1,4 @@
-
+![screenshot](https://github.com/fastrgv/Interval-RPN-Calculator/blob/master/irpn.png)
 
 
 Here is a 7z archive that includes all the newest source and executables for Windows, Linux, & OSX:
