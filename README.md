@@ -11,6 +11,13 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.4/irpn
 
 # Interval RPN Calculator
 
+**ver 2.0.5 -- 28sep22**
+
+* All build scripts now avoid creating a library-file first.
+* Elliminate w32 build.
+* Now using new easy to install GNU ada for Win64.
+
+
 **ver 2.0.4 -- 16sep22**
 * Now use GNU Ada exclusively.
 * Elliminated use of defunct AdaCore compiler.
