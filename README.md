@@ -22,7 +22,7 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.6/irpn
 
 * Revised & improved build scripts.
 * Updated Mac OSX build.
-* Improved input handling to better allow [bs] or [del] to correct bad input.
+* Improved input handling to better allow [bs]-key or [del]-key to correct bad input.
 
 
 **ver 2.0.5 -- 28sep22**
