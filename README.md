@@ -10,48 +10,42 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.5/irpn
 
 
 
+
+
+
 # Interval RPN Calculator
+
+
+## Whats new:
+
+**ver 2.0.6 -- ddmmm23**
+
+* Revised & improved build scripts.
+* Updated Mac OSX build.
+* Improved input handling to better allow [bs] or [del] to correct bad input.
+
 
 **ver 2.0.5 -- 28sep22**
 
 * All build scripts now avoid creating a library-file first.
-* Elliminate w32 build.
+* Elliminated w32 build.
 * Now using new easy to install GNU ada for Win64.
 
-
-**ver 2.0.4 -- 16sep22**
-* Now use GNU Ada exclusively.
-* Elliminated use of defunct AdaCore compiler.
-
-
-**ver 2.0.3 -- 8jan22**
-* Improved coding, interface & help screen.
-* Reduced clutter in root directory.
-
-
-**ver 2.0.2 -- 12oct20**
-
-* Improved output format; added (h)-key.
-* Improved handling of erroneous inputs.
-
-
-**ver 2.0.1 -- 9oct20**
-
-* Improved coding of ifGAOL.cpp for better accuracy.
-
-* Improved number entry in irpn.adb for proper accuracy.
-
-**ver 2.0.0 -- 7oct20**
-
-* Converted to using Boost-Interval library. (Boost NOT needed to run).
-
-* Now works for Windows, OSX, & most distros of linux.
-
-
+## More change-history at end of file
 
 
 ## Brief Description
-This terminal app runs on PCs or laptops running Windows, OSX or GNU/Linux.  It attempts to mimic the functionality of an HP ReversePolishNotation [RPN] calculator with the added enhancement of interval output.  So along with your answer, you get a good idea of its trustworthiness.
+This terminal app runs on PCs or laptops running Windows, OSX, or GNU/Linux.  It attempts to mimic the functionality of an HP ReversePolishNotation [RPN] calculator with the added enhancement of interval output.  So along with your answer, you get a good idea of its trustworthiness.
+
+-----------------------------------------------------------
+Featuring
+
+	* no installation
+	* no dependencies
+	* simply unzip in your Downloads directory, and run;
+	* or unzip onto a USB flash drive [w/same file format] and run.
+-----------------------------------------------------------
+
 
 
 ## Details
@@ -89,7 +83,7 @@ In order that math OPs only require a single keystroke
 The (n)-key will negate the value at the stack top. 
 (i.e.: typing "-1.3e-6" is not allowed)
 
-The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys.
+The allowed binary operators are {plus,minus,times,divide,pow}.  These are invoked with the usual keyboard keys (^ is pow).
 
 The (h)-key [Help] will always show the menu.
 
@@ -100,24 +94,23 @@ Enter a number, then type m3 + (enter), to store it in memory #3 location.  This
 
 Recall it by typing M3 + (enter);  this puts it on top of stack, while retaining it in memory location #3.
 
-Enhancements to user-friendliness will be coming soon!
 
 
 #### Example output [ ln(1.3e-6) ]:
 
-1.3e-6
+	1.3e-6
 
-1.300_000_000_000_000_000E-06 HI
+	1.300_000_000_000_000_000E-06 HI
 
-1.299_999_999_999_999_840E-06 LO    [ stack.top: 1 ]
+	1.299_999_999_999_999_840E-06 LO    [ stack.top: 1 ]
 
-l
+	l
 
- LN 
+	 LN 
 
--13.553_146_293_496_780_800 HI
+	-13.553_146_293_496_780_800 HI
 
--13.553_146_293_496_785_600 LO    [ stack.top: 1 ]
+	-13.553_146_293_496_785_600 LO    [ stack.top: 1 ]
 
 
 
@@ -130,48 +123,67 @@ Ada developers note that this app includes a minimal Ada-binding to the Boost In
 ## Setup & Running:
 The application's root directory [~/intRpn/] contains files for deployment on 3 platforms:  1)OS-X, 2)linux, 3)Windows, in addition to all the source code. This app is completely self contained and will run without installing any third party software onto your system.
 
-Unzip the archive. The proper command to extract the archive and maintain the directory structure is "7z x filename".
+Unzip the archive.
 
+* On Linux & Windows, 7z [www.7-zip.org] works well for this. The proper command to extract the archive and maintain the directory structure is "7z x filename".
+
+* On OSX, Keka works well. The command-line for Keka works thusly:
+	* /Applications/Keka.app/Contents/MacOS/Keka --cli 7z x (filename.7z)
+
+After the archive is unzipped...
 
 Open a commandline terminal, and cd to the install directory.
 
-Linux users should type "irpn_gnu". (runs on most linux distros.)
+To initiate, type:
 
-Mac users type "irpn_osx".
+	"irpn.bat" on Windows
+	"irpn_gnu" on Linux
+	"irpn_osx" on Mac/OSX
 
-Windows users type "irpn.exe".
+
 
 -------------------------------------------------------------------
 The h-key (Help/Hint) will show the menu.
-In order that math OPs only require a single keystroke
-**a unary minus is not allowed**
-Use the n-key to CHS (negate the stack top).
+
+Remember that a unary minus is not allowed
+Use the n-key to CHS [ChangeSign(negate) the stack top].
 
 
 --------------------------------------------------------------------------
 
 ## Rebuild Instructions
 
-This app should run as delivered, but the tools to rebuild are included.
+This app should run as delivered, but if you wish to build it yourself 
+you must install the boost libs. The scripts below assume:
+	a) osx,linux: BOOST_ROOT = $HOME/Downloads/boost_1_78_0
+	b) Windows: BOOST_ROOT=%HOMEPATH%\Downloads\boost_1_74_0
+...so you need to modify the scripts according to
+your boost home directory.
+
 
 **Windows** => wcmp.bat
 
-**MacOSX** => ocmp.sh
-
 **GNU/Linux** => lcmp.sh
 
-Thusly, modifying the main app, irpn.adb, and rebuilding, only requires an Ada compiler.
+**Mac/OSX** => ocmp.sh
 
-There are also interface libraries that should not need rebuilding, but if you do, you must first install Boost.
-The directory ~/intRpn/adabinding/ contains scripts to rebuild the interface libraries:
-	libifgaol.a (win32), libifgaol.so (linux), libifgaol.dylib (osx).
-On OSX, the resulting dylib needs to be subsequently modified with the script "fixlib.sh", to make it findable.
+
+## TBD
+
+Crashes due to bad input keystrokes are still possible.  Needs to improve.
+If you want to help fix these, send me a script so I can reproduce your problem.
+
+
+=======================================================================
+Open source Ada developers are welcome to help improve or extend this app.
+Developer or not, send comments, suggestions or questions to:
+fastrgv@gmail.com
 
 
 =======================================================================
 IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
- Copyright (C) 2020  fastrgv@gmail.com
+ Copyright (C) 2023  fastrgv@gmail.com
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -189,6 +201,25 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
 ## Older Change History------------------------------------------------
 =======================================================================
+**ver 2.0.4 -- 16sep22**
+* Now use GNU Ada exclusively.
+* Elliminated use of defunct AdaCore compiler.
+
+**ver 2.0.3 -- 8jan22**
+* Improved coding, interface & help screen.
+* Reduced clutter in root directory.
+
+**ver 2.0.2 -- 12oct20**
+* Improved output format; added (h)-key.
+* Improved handling of erroneous inputs.
+
+**ver 2.0.1 -- 9oct20**
+* Improved coding of ifjail.cpp for better accuracy.
+* Improved number entry in irpn.adb for proper accuracy.
+
+**ver 2.0.0 -- 7oct20**
+* Converted to using Boost-Interval library. (Boost NOT needed to run).
+* Now works for Windows, OSX, & most distros of linux.
 
 **ver 1.1.0 -- 3feb20**
 * Big improvement in linux portability.  Now runs on a redhat-derived linux distro, as well as Mint, a Debian-derivative.
