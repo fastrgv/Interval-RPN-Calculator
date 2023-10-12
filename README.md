@@ -24,7 +24,13 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.6/irpn
 
 ## Whats new:
 
-**ver 2.0.6 -- ddmmm23**
+**ver 2.0.7 -- 12oct2023**
+
+* More improvements in input handling.
+* Correction to menu.
+
+
+**ver 2.0.6 -- 7oct23**
 
 * Revised & improved build scripts.
 * Updated Mac OSX build.
