@@ -24,6 +24,12 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.7/irpn
 
 ## Whats new:
 
+**ver 2.0.8 -- 14oct2023**
+
+* Important corrections to input handling.
+* Added reciprocal function using the (i)-btn.
+
+
 **ver 2.0.7 -- 12oct2023**
 
 * More improvements in input handling.
