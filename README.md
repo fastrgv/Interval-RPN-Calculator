@@ -72,21 +72,27 @@ Here is the header that appears on invocation:
 	
 ---------------- Interval RPN calculator ---------------
 
+           BinOp{+-*/} => Y:stack[top-1] (Op) X:stack[top]
 Key Map:
 
-            <esc>=>{quit}    <z>=>{clr}      <n>=>{CHS}
-            
-             <e>=>{EEX}      <E>=>{e^x}      <^>=>{x^y}
-             
-             <s>=>{sin}      <c>=>{cos}      <t>=>{tan}
-             
-             <S>=>{asin}     <C>=>{acos}     <T>=>{atan}
-             
-             <l>=>{ln}       <p>=>{pi}       <r>=>{sqrt}
-             
-             <L>=>{lg}       <D>=>{Deg}      <R>=>{Rad}
-             
+             <z>=>{clr}      <n>=>{CHS}      <k>=>{stack}
+
              <x>=>{X:Y}      <m>=>{STO}      <M>=>{RCL}
+
+             <p>=>{pi}       <E>=>{e^x}      <^>=>{y^x}
+
+             <s>=>{sin}      <c>=>{cos}      <t>=>{tan}
+
+             <S>=>{asin}     <C>=>{acos}     <T>=>{atan}
+
+             <D>=>{Deg}      <R>=>{Rad}*     <l>=>{ln}
+
+             <r>=>{sqrt}     <h>=>{help}     <i>=>{1/x} 
+
+             <L>={lg}        <q>=>{quit}
+
+
+
 
 
 ### Operation
