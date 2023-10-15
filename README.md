@@ -129,7 +129,7 @@ The allowed binary operators are {plus,minus,times,divide,pow}.  These are invok
 The (h)-key [Help] will always show the menu.
 
 
-### Memory Function (mk/Mk, k=1..9):
+### Memory Function (mk/Mk, k=0..9):
 
 Enter a number, then type m3 + (enter), to store it in memory #3 location.  This will pop it off the stack.
 
@@ -261,9 +261,12 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 **ver 2.0.0 -- 7oct20**
 * Converted to using Boost-Interval library. (Boost NOT needed to run).
 * Now works for Windows, OSX, & most distros of linux.
+* FIRST VERSION USING BOOST-INTERVAL LIBRARY.
+
 
 **ver 1.1.0 -- 3feb20**
 * Big improvement in linux portability.  Now runs on a redhat-derived linux distro, as well as Mint, a Debian-derivative.
+* FINAL VERSION USING GAOL BY FREDERIC GOUALARD
 
 **ver 1.0.2 -- 27feb19**
 .) updated to newer mathlib (linux);
