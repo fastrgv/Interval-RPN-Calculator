@@ -94,6 +94,23 @@ Key Map:
 
 
 
+### HP notations
+For those who never used an HP calculator, here is further explanation:
+
+	clr   => Clear All
+	chs   => Change Sign of stack top
+	stack => display contents of stack
+	x:y   => swap top two stack entrys
+	lg    => log base 2
+
+	sto   => store data into memory 0..9
+				Eg: m5 pops top element off the stack into memory #5
+
+	rcl   => recall from a memory 0..9
+				Eg: M5 pushes data in memory #5 onto stack top
+
+
+
 
 ### Operation
 Type numbers and hit (enter) to push each of them onto the RPN stack.  Then a single key defines the desired operation.
