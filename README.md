@@ -3,7 +3,7 @@
 
 Here is a 7z archive that includes all the newest source and executables for Windows, Linux, & OSX:
 
-https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.8/irpn15oct23.7z
+https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.1.0/irpn13aug24.7z
 
 
 * On OSX, Keka works well for 7Z files. The command-line for Keka is:
