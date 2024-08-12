@@ -24,6 +24,13 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.0.8/irpn
 
 ## Whats new:
 
+**ver 2.1.0 -- 13aug2024**
+
+* Arguments were reversed for the power-operator (^). That is now corrected.
+* Fixed header to clarify that y=stack(2), x=stack(1).
+
+
+
 **ver 2.0.8 -- 14oct2023**
 
 * Important corrections to input handling.
