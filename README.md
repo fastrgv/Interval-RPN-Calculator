@@ -19,10 +19,21 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.1.0/irpn
 
 
 
+
 # Interval RPN Calculator
 
 
 ## Whats new:
+
+
+
+**ver 2.1.1 -- 1jan2025**
+
+* Checked my HP calculator & found the power operator was Ok in ver 2.0.9. Fixed.
+* Header now clarifies that x=stack(top), y=stack(next).
+* Replaced "lg" with "log2" for extra clarity.
+
+
 
 **ver 2.1.0 -- 13aug2024**
 
@@ -30,47 +41,41 @@ https://github.com/fastrgv/Interval-RPN-Calculator/releases/download/v2.1.0/irpn
 * Fixed header to clarify that y=stack(2), x=stack(1).
 
 
+**ver 2.0.9 -- 15oct2023**
+
+* Added guard to memory slots 0..9;
+* More refinements to input handling.
+
 
 **ver 2.0.8 -- 14oct2023**
 
 * Important corrections to input handling.
 * Added reciprocal function using the (i)-btn.
 
-
-**ver 2.0.7 -- 12oct2023**
-
-* More improvements in input handling.
-* Correction to menu.
-
-
-**ver 2.0.6 -- 7oct23**
-
-* Revised & improved build scripts.
-* Updated Mac OSX build.
-* Improved input handling to better allow [bs]-key or [del]-key to correct bad input.
-
-
-**ver 2.0.5 -- 28sep22**
-
-* All build scripts now avoid creating a library-file first.
-* Elliminated w32 build.
-* Now using new easy to install GNU ada for Win64.
-
 ## More change-history at end of file
 
 
 ## Brief Description
-This terminal app runs on PCs or laptops running Windows, OSX, or GNU/Linux.  It attempts to mimic the functionality of an HP ReversePolishNotation [RPN] calculator with the added enhancement of interval output.  So along with your answer, you get a good idea of its trustworthiness.
+
+This is a terminal calculator with the enhancement of 
+interval output.  So along with your answer, you get 
+a good idea of its trustworthiness.
+
+It mimics the functionality of an Hewlett-Packard Reverse
+Polish Notation [RPN] calculator, simply because I like RPN.
+But along with your answer, you get some measure of its 
+trustworthiness.
+
+Runs on PCs or laptops running Windows, OSX, or GNU/Linux.  
 
 -----------------------------------------------------------
 Featuring
 
 	* no installation
 	* no dependencies
-	* simply unzip in your Downloads directory, and run;
-	* or unzip onto a USB flash drive [w/same file format] and run.
+	* simply unzip in any directory, and run;
+	* or unzip onto a USB flash drive and run.
 -----------------------------------------------------------
-
 
 
 ## Details
@@ -79,12 +84,12 @@ Here is the header that appears on invocation:
 	
 ---------------- Interval RPN calculator ---------------
 
-           BinOp{+-*/} => Y:stack[top-1] (Op) X:stack[top]
+           BinOp{+-*/^} => Y:stack[next] (Op) X:stack[top]
 Key Map:
 
              <z>=>{clr}      <n>=>{CHS}      <k>=>{stack}
 
-             <x>=>{X:Y}      <m>=>{STO}      <M>=>{RCL}
+             <x>=>{X:Y}      <m#>=>{STO}     <M#>=>{RCL}
 
              <p>=>{pi}       <E>=>{e^x}      <^>=>{y^x}
 
@@ -96,10 +101,7 @@ Key Map:
 
              <r>=>{sqrt}     <h>=>{help}     <i>=>{1/x} 
 
-             <L>={lg}        <q>=>{quit}
-
-
-
+             <L>={log2}      <q>=>{quit}
 
 ### HP notations
 For those who never used an HP calculator, here is further explanation:
@@ -108,7 +110,7 @@ For those who never used an HP calculator, here is further explanation:
 	chs   => Change Sign of stack top
 	stack => display contents of stack
 	x:y   => swap top two stack entrys
-	lg    => log base 2
+	log2  => log base 2
 
 	sto   => store data into memory 0..9
 				Eg: m5 pops top element off the stack into memory #5
@@ -117,14 +119,13 @@ For those who never used an HP calculator, here is further explanation:
 				Eg: M5 pushes data in memory #5 onto stack top
 
 
-
-
 ### Operation
 Type numbers and hit (enter) to push each of them onto the RPN stack.  Then a single key defines the desired operation.
 
 RPN means that you enter the numbers first, then define the operation.  A unary operator, like sin, will apply the function to the number at the top of the numeric stack, then push the result back on the stack top.  A binary operator will pop two values off the stack, then perform the operation on them, and push the result back on the stack top.
 
-For those familiar with the HP RPN calculators, the number entry here differs slightly.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key.  
+For those familiar with the HP RPN calculators, the number entry here differs slightly.  To enter scientific notation you simply type the number as you would normally, eg "1.3e5" or "1.3e-6" followed by the (enter)-key. The (n)-key will negate the value at the stack top. (i.e.: typing "-1.3e-6" is not allowed)
+ 
 
 In order that math OPs only require a single keystroke
 **a unary minus is not allowed**
@@ -152,9 +153,7 @@ Recall it by typing M3 + (enter);  this puts it on top of stack, while retaining
 
 	1.299_999_999_999_999_840E-06 LO    [ stack.top: 1 ]
 
-	l
-
-	 LN 
+	l  LN 
 
 	-13.553_146_293_496_780_800 HI
 
@@ -231,7 +230,7 @@ fastrgv@gmail.com
 =======================================================================
 IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
- Copyright (C) 2023  fastrgv@gmail.com
+ Copyright (C) 2025  fastrgv@gmail.com
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -249,6 +248,21 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 
 ## Older Change History------------------------------------------------
 =======================================================================
+
+**ver 2.0.7 -- 12oct2023**
+* More improvements in input handling.
+* Correction to menu.
+
+**ver 2.0.6 -- 7oct23**
+* Revised & improved build scripts.
+* Updated Mac OSX build.
+* Improved input handling to better allow [bs]-key or [del]-key to correct bad input.
+
+**ver 2.0.5 -- 28sep22**
+* All build scripts now avoid creating a library-file first.
+* Elliminated w32 build.
+* Now using new easy to install GNU ada for Win64.
+
 **ver 2.0.4 -- 16sep22**
 * Now use GNU Ada exclusively.
 * Elliminated use of defunct AdaCore compiler.
@@ -269,7 +283,6 @@ IntervalRPN is covered by the GNU GPL v3 as indicated in the sources:
 * Converted to using Boost-Interval library. (Boost NOT needed to run).
 * Now works for Windows, OSX, & most distros of linux.
 * FIRST VERSION USING BOOST-INTERVAL LIBRARY.
-
 
 **ver 1.1.0 -- 3feb20**
 * Big improvement in linux portability.  Now runs on a redhat-derived linux distro, as well as Mint, a Debian-derivative.
